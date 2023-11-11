@@ -51,7 +51,7 @@
  */
 
 #ifndef GBA_JPEG_DECODE_H
-#define GBA_IMAGE_JPEG_H
+#define GBA_JPEG_DECODE_H
 
 #include "gba-jpeg.h"
 
@@ -276,4 +276,4 @@ int JPEG_DecompressImage (const unsigned char *data, volatile JPEG_OUTPUT_TYPE *
 }
 #endif /* __cplusplus */
 
-#endif /* GBA_IMAGE_JPEG_H */
+#endif /* GBA_JPEG_DECODE_H */
