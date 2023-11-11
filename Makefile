@@ -78,7 +78,7 @@ DEFINES		+= -D__NDS__ -DARM9
 
 ARCH		:= -march=armv5te -mtune=arm946e-s
 
-WARNFLAGS	:= -Wall
+WARNFLAGS	:= -Wall -Wunused-but-set-variable
 
 INCLUDEFLAGS	:= $(foreach path,$(INCLUDEDIRS),-I$(path)) \
 		   $(foreach path,$(LIBDIRS),-I$(path)/include)
