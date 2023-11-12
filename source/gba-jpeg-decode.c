@@ -895,10 +895,12 @@ int JPEG_Decoder_ReadHeaders (JPEG_Decoder *decoder, const unsigned char **dataB
                 
                 while (data < end)
                 {
-                    int pair, slot, precision;
-                    
+                    int pair, slot;
+
                     pair = *data ++;
-                    precision = pair >> 4;
+#if JPEG_DEBUG == 1
+                    int precision = pair >> 4;a
+#endif
                     slot = pair & 15;
                     
                     JPEG_Assert (precision == 0); /* Only allow 8-bit. */
