@@ -1,7 +1,8 @@
-Test photo
-==========
+Information about the test photo
+--------------------------------
 
 Location: The Center Potsdamer Platz, Berlin, Germany
+
 Date: October 2017
 
 License
