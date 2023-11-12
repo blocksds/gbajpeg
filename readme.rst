@@ -18,7 +18,7 @@ This repository contains the library with a few fixes and a build system so that
 the library can be integrated with `BlocksDS <https://github.com/blocksds>`_, a
 SDK to develop applications for Nintendo DS.
 
-Note: Progressive JPEG files aren't supported.
+Note: Progressive and lossless JPEG files aren't supported.
 
 2. Install
 **********
