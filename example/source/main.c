@@ -8,7 +8,7 @@
 #include <nds.h>
 #include <filesystem.h>
 
-#include "gba-jpeg-decode.h"
+#include <gba-jpeg-decode.h>
 
 void wait_forever(void)
 {
