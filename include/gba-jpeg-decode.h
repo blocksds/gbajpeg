@@ -14,7 +14,7 @@
  * before decompression, allowing you to spend IWRAM on more tools called
  * constantly rather than one you call only once in awhile.  There is no
  * permanent IWRAM usage with this library.
- * 
+ *
  * It has a low capacitance for unusual JPEGs.  They cannot be progressive,
  * use arithmetic coding, have more than 4 components in a scan, and must be
  * 8-bit.  They can be colour or grayscale, and any component scaling factors
@@ -22,10 +22,10 @@
  * 2:1:1 is allowed).  The maximum component scale factors cannot be three.  In
  * general, you'll be all right, but if it doesn't like your input it will not
  * react sensibly in embedded.
- * 
+ *
  * This code is in the public domain.  JPEG is used for both its standard
  * meaning and for JFIF.
- * 
+ *
  * Revision 1: Inflicted stricter warnings, fixed C99-using code, and reduced
  *     allocation footprint (6144 bytes less).
  * Revision 2: Reduced ROM usage by 276 bytes, with the body going to 832 bytes
@@ -72,7 +72,7 @@ struct JPEG_HuffmanTable
     const unsigned char *huffval; /**< Pointer to values in the table (256 entries). */
     int maxcode [16]; /**< The maximum code for each length - 1. */
     const unsigned char *valptr [16]; /**< Items are subtracted by mincode and then indexed into huffval. */
-    
+
     unsigned char look_nbits [256]; /**< The lookahead buffer lengths. */
     unsigned char look_sym [256]; /**< The lookahead buffer values. */
 };
@@ -92,7 +92,7 @@ struct JPEG_FrameHeader
     JPEG_Marker marker; /**< The marker that began this frame header, one of JPEG_Marker_SOFn. */
     int encoding; /**< 0 for Huffman coding, 1 for arithmetic coding. */
     char differential; /**< Differential (1) or non-differential (0). */
-    
+
     unsigned char precision; /**< Sample precision - precision in bits for the samples of the components in the frame. */
     unsigned short height; /**< Maximum number of lines in the source image, equal to the number of lines in the component with the maximum number of vertical samples.  0 indicates that the number of lines shall be defined by the DNL marker and parameters at the end of the first scan. */
     unsigned short width; /**< Number of samples per line in the source image, equal to the number of samples per line in the component with the maximum number of horizontal samples. */
@@ -134,7 +134,7 @@ struct JPEG_Decoder
 #define JPEG_BITS_START() \
     unsigned int bits_left = 0; \
     unsigned long int bits_data = 0
-    
+
 /** Rewind any bytes that have not been read from and reset the state. */
 #define JPEG_BITS_REWIND() \
     do { \
@@ -150,7 +150,7 @@ struct JPEG_Decoder
         bits_left = 0; \
         bits_data = 0; \
     } while (0)
-    
+
 /** Fill the buffer. */
 #define JPEG_BITS_CHECK() \
     do { \
@@ -162,15 +162,15 @@ struct JPEG_Decoder
             bits_left += 8; \
         } \
     } while (0)
-   
+
 /** Return and consume a number of bits. */
 #define JPEG_BITS_GET(COUNT) \
     ((bits_data >> (bits_left -= (COUNT))) & ((1 << (COUNT)) - 1))
-    
+
 /** Return a number of bits without consuming them. */
 #define JPEG_BITS_PEEK(COUNT) \
     ((bits_data >> (bits_left - (COUNT))) & ((1 << (COUNT)) - 1))
-    
+
 /** Drop a number of bits from the stream. */
 #define JPEG_BITS_DROP(COUNT) \
     (bits_left -= (COUNT))
@@ -209,7 +209,7 @@ extern const unsigned char JPEG_ComponentRange [32 * 3]; /* A limited component 
 /** Return whether this data matches as a JPEG input stream.  You only need
   * to read four bytes.
   */
-  
+
 int JPEG_Match (const unsigned char *data, int length);
 
 /** Read a FrameHeader segment (SOFn) and store the new data pointer in
@@ -223,35 +223,35 @@ int JPEG_FrameHeader_Read (JPEG_FrameHeader *frame, const unsigned char **data, 
   * *data.  Returns true on success and false on failure (failure isn't
   * possible if JPEG_DEBUG is reset).
   */
-  
+
 int JPEG_HuffmanTable_Read (JPEG_HuffmanTable *table, const unsigned char **data);
 
 /** Skip a HuffmanTable segment (DHT) and store the new data pointer in
   * *data on success.  Returns true on success and false on failure (failure
   * isn't possible if JPEG_DEBUG is reset).
   */
-  
+
 int JPEG_HuffmanTable_Skip (const unsigned char **data);
 
 /** Read a ScanHeader segment (SOS) and store the new data pointer in
   * *data.  Returns true on success and false on failure (failure isn't
   * possible if JPEG_DEBUG is reset).
   */
-  
+
 int JPEG_ScanHeader_Read (JPEG_ScanHeader *scan, const unsigned char **data);
 
 /** Read all headers up to the start of the image and store the new data
   * pointer in *data.  Returns true on success and false on failure (failure
   * isn't possible if JPEG_DEBUG is reset).
   */
-  
+
 int JPEG_Decoder_ReadHeaders (JPEG_Decoder *decoder, const unsigned char **data);
 
 /** Read the entire image from the *data value and then store the new data pointer.
   * Returns true on success and false on failure (failure isn't possible if
   * JPEG_DEBUG is reset).
   */
-  
+
 int JPEG_Decoder_ReadImage (JPEG_Decoder *decoder, const unsigned char **data, volatile JPEG_OUTPUT_TYPE *out, int outWidth, int outHeight);
 
 /** Perform a 2D inverse DCT computation on the input.
@@ -269,7 +269,7 @@ void JPEG_IDCT (JPEG_FIXED_TYPE *zz, signed char *chunk, int chunkStride);
   * read the image into the buffer given.  Returns true on success and false on
   * failure (failure isn't possible if JPEG_DEBUG is reset).
   */
-  
+
 int JPEG_DecompressImage (const unsigned char *data, volatile JPEG_OUTPUT_TYPE *out, int outWidth, int outHeight);
 
 #ifdef __cplusplus

@@ -10,13 +10,13 @@ extern "C" {
     /**< Enable assertion checks for input.  This is useful if you want to use
      * the library in non-embedded environments, such as to confirm that a
      * JPEG file will be compliant.
-     * 
+     *
      * Enabling this will define JPEG_Assert(TEST) if it's not predefined.
      * The default prints some information on the error to stderr and then
      * returns zero.
      */
 #endif /* JPEG_DEBUG */
-    
+
 #ifndef JPEG_HANDLE_ANY_FACTORS
 #define JPEG_HANDLE_ANY_FACTORS 1
     /**< If this is set, any component factors are valid.  Otherwise
@@ -25,7 +25,7 @@ extern "C" {
      * use Save for Web.  Resetting this saves 508 bytes of IWRAM.
      */
 #endif /* JPEG_HANDLE_ANY_FACTORS */
-     
+
 #ifndef JPEG_FASTER_M211
 #define JPEG_FASTER_M211 1
     /**< If this is set, then the most common JPEG format is not given
@@ -34,7 +34,7 @@ extern "C" {
      * 532 bytes of IWRAM, at the cost of speed.
      */
 #endif /* JPEG_FASTER_M211 */
-     
+
 #ifndef JPEG_USE_IWRAM
 #define JPEG_USE_IWRAM 0
     /**< If this is set, the JPEG decompressor will use IWRAM for huge
@@ -43,7 +43,7 @@ extern "C" {
      * JPEG_HANDLE_ANY_FACTORS and JPEG_FASTER_M211.
      */
 #endif /* JPEG_USE_IWRAM */
-     
+
 #define JPEG_DCTSIZE 8
     /**< The number of samples across and down a JPEG DCT.  This cannot be
      * configured, as the inverse DCT only handles 8x8.
@@ -51,7 +51,7 @@ extern "C" {
 
 #define JPEG_DCTSIZE2 (JPEG_DCTSIZE * JPEG_DCTSIZE)
     /**< The number of samples in a full 2-D DCT. */
-    
+
 #ifndef JPEG_MAXIMUM_COMPONENTS
 #define JPEG_MAXIMUM_COMPONENTS 4
     /**< The maximum number of components that can be involved in an image.
@@ -88,12 +88,12 @@ extern "C" {
  * red in the first eight bits, green in the second eight bits, and blue in the
  * third eight bits.
  */
- 
+
 #if JPEG_OUTPUT_RGB8
     #define JPEG_OUTPUT_TYPE unsigned int
-    
+
     #define JPEG_Convert_Limit(VALUE) ((VALUE) < 0 ? 0 : (VALUE) > 255 ? 255 : (VALUE))
-    
+
     #define JPEG_Convert(OUT, Y, Cb, Cr) \
         do { \
             int eY = (Y) + 63; \
@@ -106,7 +106,7 @@ extern "C" {
             B = JPEG_Convert_Limit (B) << 16; \
             (OUT) = R | G | B; \
         } while (0)
-        
+
     #define JPEG_Convert_From(IN, Y, Cb, Cr) \
         do { \
             int R = IN & 255; \
@@ -118,7 +118,7 @@ extern "C" {
             Cr = ((R * 112 >> 8) + (G * -94 >> 8) + (B * 18 >> 8)) >> 1; \
         } while (0)
 #endif /* JPEG_OUTPUT_RGB8 */
-    
+
 #ifndef JPEG_OUTPUT_TYPE
 #define JPEG_OUTPUT_TYPE unsigned short
     /**< This is the data type that JPEG outputs to.  The interpretation of
@@ -131,7 +131,7 @@ extern "C" {
   * in the output value (of type JPEG_OUTPUT_TYPE).  By default this stores to
   * 15-bit RGB.
   */
-  
+
 #define JPEG_Convert(OUT, Y, Cb, Cr) \
     do { \
         int eY = (Y) + 63; \
@@ -144,7 +144,7 @@ extern "C" {
         B = ComponentRange [B >> 2] << 10; \
         (OUT) = R | G | B; \
     } while (0)
-    
+
 #endif /* JPEG_Convert  */
 
 #ifndef JPEG_Assert
