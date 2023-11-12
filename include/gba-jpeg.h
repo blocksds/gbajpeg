@@ -188,6 +188,9 @@ enum JPEG_Marker
     JPEG_Marker_DRI = 0xFFDD, /**< Define restart interval. */
     JPEG_Marker_EOI = 0xFFD9, /**< End of image. */
     JPEG_Marker_SOF0 = 0xFFC0, /**< Start of Frame, non-differential, Huffman coding, baseline DCT. */
+    JPEG_Marker_SOF1 = 0xFFC1, /**< Start of Frame 1. Extended Sequential DCT. */
+    JPEG_Marker_SOF2 = 0xFFC2, /**< Start of Frame 2. Progressive DCT. */
+    JPEG_Marker_SOF3 = 0xFFC3, /**< Start of Frame 3. Lossless (sequential). */
     JPEG_Marker_SOI = 0xFFD8, /**< Start of image. */
     JPEG_Marker_SOS = 0xFFDA /**< Start of scan. */
 };

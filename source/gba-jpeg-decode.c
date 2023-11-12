@@ -934,7 +934,13 @@ int JPEG_Decoder_ReadHeaders (JPEG_Decoder *decoder, const unsigned char **dataB
                 if (!JPEG_FrameHeader_Read (&decoder->frame, &data, marker))
                     return 0;
                 break;
-            
+
+            case JPEG_Marker_SOF1: /* Start of Frame 1. Extended Sequential DCT. */
+            case JPEG_Marker_SOF2: /* Start of Frame 2. Progressive DCT. */
+            case JPEG_Marker_SOF3: /* Start of Frame 3. Lossless (sequential). */
+                JPEG_Assert (0); /* Not supported */
+                return 0;
+
             case JPEG_Marker_SOS: /* Start of scan, immediately followed by the image. */
                 if (!JPEG_ScanHeader_Read (&decoder->scan, &data))
                     return 0;
