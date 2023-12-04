@@ -103,6 +103,8 @@ int main(int argc, char **argv)
 
     JPEG_DecompressImage(jpg_file, buffer, 256, 192);
 
+    free(jpg_file);
+
     printf("Image decoded!\n");
 
     // Flush the cache before doing a DMA copy
@@ -120,8 +122,6 @@ int main(int argc, char **argv)
         if (keysDown() & KEY_START)
             break;
     }
-
-    free(jpg_file);
 
     return 0;
 }
