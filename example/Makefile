@@ -15,7 +15,7 @@ NITROFSDIR	:= nitrofs
 # Libraries
 
 LIBS		:= -lgbajpeg -lnds9 -lc
-LIBDIRS		:= $(BLOCKSDS)/libs/libxm7 \
+LIBDIRS		:= $(BLOCKSDS)/libs/libnds \
 		   $(BLOCKSDSEXT)/gbajpeg
 
 include $(BLOCKSDS)/sys/default_makefiles/rom_arm9/Makefile
