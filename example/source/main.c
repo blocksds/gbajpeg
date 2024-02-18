@@ -101,11 +101,17 @@ int main(int argc, char **argv)
 
     printf("Decoding image...\n");
 
+    cpuStartTiming(0);
+
     JPEG_DecompressImage(jpg_file, buffer, 256, 192);
+
+    uint32_t ticks = cpuEndTiming();
 
     free(jpg_file);
 
     printf("Image decoded!\n");
+
+    printf("Time elapsed: %" PRIu32 " ms\n", timerTicks2msec(ticks));
 
     // Flush the cache before doing a DMA copy
     DC_FlushRange(buffer, sizeof(buffer));
