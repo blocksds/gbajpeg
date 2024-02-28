@@ -33,7 +33,7 @@ Once you have installed the library, go to the folder of the example and run:
 make
 ```
 
-This will generate a NDS file that you can test on flashcarts or emulators.
+This will generate a NDS file that you can test with flashcards or emulators.
 
 ## License
 
