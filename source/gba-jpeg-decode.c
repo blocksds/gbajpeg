@@ -899,7 +899,7 @@ int JPEG_Decoder_ReadHeaders (JPEG_Decoder *decoder, const unsigned char **dataB
 
                     pair = *data ++;
 #if JPEG_DEBUG == 1
-                    int precision = pair >> 4;a
+                    int precision = pair >> 4;
 #endif
                     slot = pair & 15;
 
